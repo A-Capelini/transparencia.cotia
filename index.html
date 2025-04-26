@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Transparência do Terceiro Setor - Gastos Públicos</title>
+    <meta name="description" content="Visualize os gastos públicos do terceiro setor de forma transparente. Acompanhe onde o dinheiro público está sendo investido.">
+    <meta name="keywords" content="transparência terceiro setor, gastos públicos, portal de transparência, dinheiro público, setor não governamental, acompanhamento de gastos, relatórios financeiros">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="[Nome da Organização/Portal - Opcional]">
+    <meta property="og:title" content="Portal de Transparência do Terceiro Setor - Gastos Públicos">
+    <meta property="og:description" content="Visualize os gastos públicos do terceiro setor de forma transparente. Acompanhe onde o dinheiro público está sendo investido.">
+    <meta property="og:url" content="[URL_DO_SEU_SITE]/dashboard_gastos.html">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="[URL_DO_SEU_SITE]/dashboard_gastos.html">
+    <style>
+        /* A tag <style> permite inserir estilos CSS diretamente no documento HTML. */
+        body {
+            margin: 0; /* Remove as margens padrão do corpo da página para que o iframe ocupe toda a área disponível. */
+            font-family: sans-serif; /* Define uma fonte padrão para o texto, caso você adicione algum. */
+            display: flex; /* Utiliza o modelo de layout flexbox para centralizar o iframe. */
+            justify-content: center; /* Centraliza o conteúdo horizontalmente. */
+            align-items: center; /* Centraliza o conteúdo verticalmente. */
+            min-height: 100vh; /* Garante que o body ocupe pelo menos a altura total da viewport. */
+            background-color: #f4f4f4; /* Define uma cor de fundo clara para a página. */
+        }
+        iframe {
+            width: 95%; /* Define a largura inicial do iframe para 95% da largura do contêiner pai. */
+            max-width: 1200px; /* Define uma largura máxima para telas maiores. */
+            height: auto; /* Permite que a altura seja ajustada proporcionalmente com base na largura. */
+            aspect-ratio: 1024 / 804; /* Mantém a proporção original do dashboard. */
+            border: none; /* Remove a borda padrão do iframe. */
+        }
+
+        /* Media queries para diferentes resoluções de tela */
+
+        /* Para telas menores que 768px (tablets e smartphones) */
+        @media (max-width: 767px) {
+            iframe {
+                width: 100%; /* O iframe ocupa toda a largura em telas menores. */
+                aspect-ratio: 1024 / 804; /* Mantém a proporção. */
+            }
+        }
+
+        /* Para telas maiores que 1200px (desktops grandes) - Opcional, já temos um max-width */
+        /* @media (min-width: 1201px) {
+        /* iframe {
+        /* width: 1200px; /* Mantém uma largura máxima em telas grandes. */
+        /* height: auto;
+        /* aspect-ratio: 1024 / 804;
+        /* }
+        /* } */
+    </style>
+</head>
+<body>
+    <iframe
+        title="Gastos - Terceiro Setor v5.9"
+        width="1024"
+        height="804"
+        src="https://app.powerbi.com/view?r=eyJrIjoiNjYyMjg1YTAtOTlhOS00YWFkLWI0MmYtY2MzZGJlMDY1MzFmIiwidCI6ImNmNzJlMmJkLTdhMmItNDc4My1iZGViLTM5ZDU3YjA3Zjc2ZiIsImMiOjR9"
+        frameborder="0"
+        allowFullScreen="true"
+    >
+    </iframe>
+    </body>
+</html>
