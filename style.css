@@ -1,5 +1,4 @@
 /* CSS for the HTML page */
-/* Melhor prática: Mover este CSS para um arquivo style.css externo */ /* Este comentário pode ser removido */
 body {
     margin: 0;
     padding: 0;
@@ -24,7 +23,7 @@ header h1 {
 }
 
 main {
-    flex-grow: 1;
+    flex-grow: 1; /* Faz o main ocupar o espaço restante */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,6 +32,7 @@ main {
     box-sizing: border-box;
 }
 
+/* Estilos para parágrafos dentro do main (incluindo o da seção adicional) */
 main p {
     text-align: center;
     max-width: 90%;
@@ -40,15 +40,33 @@ main p {
     color: #555;
 }
 
+/* Estilos específicos para a seção adicional */
+section[aria-labelledby="info-adicional-titulo"] {
+  margin-top: 2em;
+  width: 100%; /* Garante que ocupe a largura para centralizar o p */
+}
+
+#info-adicional-titulo {
+  text-align: center;
+  margin-bottom: 0.5em; /* Ajusta espaço antes do parágrafo */
+}
+
+/* Ajuste para o parágrafo dentro da seção, se necessário */
+/* section[aria-labelledby="info-adicional-titulo"] p { */
+    /* Estilos específicos se precisar diferenciar do outro <p> no <main> */
+/* } */
+
+
 iframe {
     width: 95%;
     max-width: 1200px;
     height: auto;
-    aspect-ratio: 1024 / 804;
+    aspect-ratio: 1024 / 804; /* Manter proporção do dashboard Power BI */
     border: 1px solid #ccc;
-    background-color: #fff;
+    background-color: #fff; /* Fundo branco caso demore a carregar */
 }
 
+/* Media query para telas menores */
 @media (max-width: 767px) {
     header h1 {
         font-size: 1.2em;
@@ -58,33 +76,32 @@ iframe {
         border-left: none;
         border-right: none;
     }
-    main p {
+    main p { /* Aplica a todos os <p> dentro de <main> */
          max-width: 95%;
     }
 }
 
-/* Adicione aqui os estilos para a section e footer se os adicionou no HTML */
-section[aria-labelledby="info-adicional-titulo"] {
-  margin-top: 2em; /* Exemplo do estilo inline que estava no HTML */
-}
-
-#info-adicional-titulo {
-  text-align: center; /* Exemplo do estilo inline que estava no HTML */
-}
-
-/* Se adicionou o footer, pode estilizar aqui também */
-/*
+/* Estilos para o Footer (Rodapé) */
 footer {
     text-align: center;
     padding: 1em;
-    margin-top: 1em;
-    background-color: #eee;
+    margin-top: 1em; /* Espaço acima do rodapé */
+    background-color: #eee; /* Mesma cor do header para consistência */
     border-top: 1px solid #ccc;
 }
 
 footer p {
-    margin:0;
+    margin: 0;
     font-size: 0.9em;
-    color: #555;
+    color: #555; /* Cor similar aos outros parágrafos */
 }
-*/
+
+/* Estilo para links no footer (exemplo) */
+footer a {
+    color: #337ab7; /* Cor de link padrão (exemplo) */
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
