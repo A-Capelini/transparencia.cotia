@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="JNjmcZPWdGGVEvP1popkDt0KaRe4LtaK_J9HbOauLYw" />
+
+    <title>Saúde - Portal Transparência Cotia - 3º Setor</title>
+    <meta name="description" content="Visualize os gastos públicos de Cotia com o terceiro setor na área de Saúde. Acompanhe os investimentos em hospitais, clínicas, UPAs e serviços de saúde parceiros.">
+    <meta name="keywords" content="transparência cotia, saúde cotia, terceiro setor saúde, gastos públicos saúde cotia, portal transparência cotia, dinheiro público cotia, prefeitura cotia, fatec cotia, hospital cotia, ubs cotia, upa cotia, sus cotia">
+    <meta name="author" content="Prefeitura de Cotia & FATEC Cotia - Ciências de Dados">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://a-capelini.github.io/transparencia.cotia/saude.html">
+
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+             <h1>Portal da Transparência - Terceiro Setor Cotia</h1>
+             </div>
+    </header>
+
+    <div class="page-container">
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="index.html">Visão Geral</a></li>
+                <li><a href="administracao.html">Administração</a></li>
+                <li><a href="assistencia_social.html">Assistência Social</a></li>
+                <li><a href="cultura.html">Cultura</a></li>
+                <li><a href="desporto_lazer.html">Desporto e Lazer</a></li>
+                <li><a href="educacao.html">Educação</a></li>
+                <li><a href="legislativo.html">Legislativo</a></li>
+                <li><a href="saude.html" class="active">Saúde</a></li> <li><a href="urbanismo.html">Urbanismo</a></li>
+                <li><a href="sobre.html">Sobre o Projeto</a></li>
+            </ul>
+        </nav>
+
+        <main>
+             <h2>Repasses para o Setor de Saúde</h2>
+
+             <p class="intro-text">
+                 Explore abaixo o painel interativo com os dados dos repasses públicos para a área de Saúde, detalhando as parcerias com organizações do Terceiro Setor em Cotia. Utilize o menu lateral para navegar por outras áreas de atuação.
+             </p>
+
+            <iframe
+                title="Dashboard de Gastos Públicos - Saúde"
+                src="https://app.powerbi.com/view?r=eyJrIjoiZmM3ZTE5MGEtODY0YS00MTI5LWI4NGYtMjgwNDI0MTU5NDUwIiwidCI6ImNmNzJlMmJkLTdhMmItNDc4My1iZGViLTM5ZDU3YjA3Zjc2ZiIsImMiOjR9&pageName=259cf2013a64455e785b"
+                allowFullScreen="true"
+                loading="lazy" >
+                Seu navegador não suporta iframes. Acesse o relatório diretamente em:
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiZmM3ZTE5MGEtODY0YS00MTI5LWI4NGYtMjgwNDI0MTU5NDUwIiwidCI6ImNmNzJlMmJkLTdhMmItNDc4My1iZGViLTM5ZDU3YjA3Zjc2ZiIsImMiOjR9&pageName=259cf2013a64455e785b" target="_blank" rel="noopener noreferrer">
+                    Relatório Power BI - Saúde - Transparência Terceiro Setor Cotia
+                </a>
+            </iframe>
+
+             <section class="card info-card" aria-labelledby="info-saude-titulo">
+                <h3 id="info-saude-titulo">Sobre os Repasses na Saúde</h3>
+                <p>
+                    A colaboração com o Terceiro Setor é uma estratégia comum para ampliar e qualificar os serviços de saúde oferecidos à população. Nesta seção, são apresentados os repasses para Organizações Sociais (OSs) e outras entidades que atuam na gestão de Unidades de Pronto Atendimento (UPAs), hospitais, clínicas especializadas e outros serviços de saúde no município de Cotia.
+                </p>
+                <p>
+                    Os instrumentos mais comuns para essas parcerias incluem Contratos de Gestão, que definem metas e responsabilidades. Os recursos podem ser originários do Sistema Único de Saúde (SUS), com repasses federais e estaduais, além de recursos próprios do município. Acompanhar esses valores é essencial para entender o investimento na saúde pública da cidade.
+                </p>
+                <p>
+                    Os dados são provenientes de fontes públicas oficiais. Para mais detalhes sobre o projeto geral, visite a página <a href="sobre.html">Sobre o Projeto</a>.
+                </p>
+             </section>
+        </main>
+    </div> <footer>
+        <p>&copy; <span id="currentYear"></span> Prefeitura de Cotia & FATEC Cotia. Todos os direitos reservados.</p>
+        <script>
+            document.getElementById("currentYear").textContent = new Date().getFullYear();
+        </script>
+    </footer>
+
+</body>
+</html>

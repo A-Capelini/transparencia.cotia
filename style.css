@@ -1,107 +1,306 @@
-/* CSS for the HTML page */
-body {
+/* ==========================================================================
+   Modern CSS for Transparência Cotia Portal - v3.0 (Sidebar Navigation)
+   ========================================================================== */
+
+/* == Variáveis (Paleta de Cores e Fontes) == */
+:root {
+    --cor-primaria: #0056b3;
+    --cor-primaria-escura: #003d82;
+    --cor-primaria-clara: #e6f0ff; /* Para hover sutil */
+    --cor-fundo: #ffffff;
+    --cor-fundo-alternativa: #f8f9fa; /* Cinza muito claro para o body */
+    --cor-sidebar-fundo: #eef1f5; /* Fundo da sidebar */
+    --cor-texto-principal: #212529;
+    --cor-texto-secundario: #495057;
+    --cor-texto-links: var(--cor-primaria);
+    --cor-texto-branco: #ffffff;
+    --cor-borda: #dee2e6;
+    --cor-foco: #007bff;
+    --sombra-suave: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra mais suave */
+    --sombra-media: 0 4px 8px rgba(0, 0, 0, 0.08);
+    --fonte-principal: 'Roboto', sans-serif;
+    --tamanho-base-fonte: 16px;
+    --line-height-base: 1.65;
+    --largura-maxima-conteudo: 1400px; /* Aumenta um pouco para acomodar sidebar */
+    --largura-sidebar: 260px; /* Largura da sidebar */
+    --altura-header: 80px; /* Estimativa da altura do header para cálculos */
+    --transicao-rapida: all 0.2s ease-in-out;
+}
+
+/* == Reset Básico e Estilos Globais == */
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
-    background-color: #f4f4f4;
+}
+html {
+    font-size: var(--tamanho-base-fonte);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+body {
+    font-family: var(--fonte-principal);
+    background-color: var(--cor-fundo-alternativa);
+    color: var(--cor-texto-principal);
+    line-height: var(--line-height-base);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--cor-texto-links); text-decoration: none; transition: var(--transicao-rapida); }
+a:hover { color: var(--cor-primaria-escura); text-decoration: underline; }
+a:focus-visible {
+  outline: 2px solid var(--cor-foco);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+}
 
+/* == Cabeçalho == */
 header {
-    background-color: #eee;
-    padding: 1em;
+    background-color: var(--cor-fundo);
+    padding: 1rem 0;
     text-align: center;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--cor-borda);
+    box-shadow: var(--sombra-suave);
+    height: var(--altura-header); /* Define altura fixa para cálculo */
+    display: flex; /* Para centralizar o .header-content verticalmente */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    z-index: 100; /* Header acima do conteúdo se sidebar não for fixa */
 }
-
+.header-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+}
 header h1 {
+    font-size: clamp(1.4rem, 3.5vw, 1.8rem); /* Ajuste no tamanho */
+    color: var(--cor-primaria);
+    font-weight: 700;
     margin: 0;
-    font-size: 1.5em;
-    color: #333;
+}
+.logo { height: clamp(30px, 5vh, 40px); width: auto; }
+
+/* == Container Principal (Sidebar + Conteúdo) == */
+.page-container {
+    display: flex;
+    flex-grow: 1; /* Ocupa o espaço restante abaixo do header */
+    width: 100%;
+    max-width: var(--largura-maxima-conteudo); /* Limita largura total */
+    margin: 0 auto; /* Centraliza o container */
 }
 
+/* == Navegação Lateral (Sidebar) == */
+nav.sidebar-nav {
+    flex: 0 0 var(--largura-sidebar); /* Não cresce, não encolhe, base de largura fixa */
+    background-color: var(--cor-sidebar-fundo);
+    padding: 1.5rem 1rem;
+    border-right: 1px solid var(--cor-borda);
+    overflow-y: auto; /* Permite rolagem se os links excederem a altura */
+    height: calc(100vh - var(--altura-header)); /* Altura total menos header */
+    position: sticky; /* Faz a sidebar "grudar" ao rolar */
+    top: var(--altura-header); /* Começa abaixo do header */
+}
+nav.sidebar-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column; /* Links empilhados verticalmente */
+    gap: 0.5rem;
+}
+nav.sidebar-nav ul li a {
+    display: block; /* Ocupa toda a largura do li */
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--cor-texto-secundario);
+    border-radius: 6px;
+    font-weight: 500;
+    transition: var(--transicao-rapida);
+    white-space: normal; /* Permite quebra de linha no texto do link */
+    font-size: 0.95rem;
+}
+nav.sidebar-nav ul li a:hover {
+    background-color: var(--cor-primaria-clara);
+    color: var(--cor-primaria-escura);
+    text-decoration: none;
+}
+nav.sidebar-nav ul li a.active {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-branco);
+    font-weight: 700;
+}
+
+/* == Conteúdo Principal (Main) == */
 main {
-    flex-grow: 1; /* Faz o main ocupar o espaço restante */
+    flex-grow: 1; /* Ocupa o espaço restante */
+    padding: 2rem; /* Padding interno */
+    overflow-y: auto; /* Permite rolagem se o conteúdo for maior */
+    height: calc(100vh - var(--altura-header)); /* Altura total menos header */
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1em;
-    width: 100%;
-    box-sizing: border-box;
+    gap: 2rem; /* Espaçamento entre elementos do main */
 }
-
-/* Estilos para parágrafos dentro do main (incluindo o da seção adicional) */
-main p {
+main > h2 {
+    font-size: clamp(1.6rem, 4vw, 1.8rem);
+    color: var(--cor-primaria-escura);
+    font-weight: 700;
     text-align: center;
-    max-width: 90%;
-    margin-bottom: 1em;
-    color: #555;
+    width: 100%;
+    margin-bottom: 0;
 }
-
-/* Estilos específicos para a seção adicional */
-section[aria-labelledby="info-adicional-titulo"] {
-  margin-top: 2em;
-  width: 100%; /* Garante que ocupe a largura para centralizar o p */
+p.intro-text {
+    font-size: 1.05rem;
+    color: var(--cor-texto-secundario);
+    text-align: center;
+    width: 100%;
+    max-width: 100%; /* Relativo ao main */
+    padding: 0;
+    margin-bottom: 0.5rem;
 }
-
-#info-adicional-titulo {
-  text-align: center;
-  margin-bottom: 0.5em; /* Ajusta espaço antes do parágrafo */
-}
-
-/* Ajuste para o parágrafo dentro da seção, se necessário */
-/* section[aria-labelledby="info-adicional-titulo"] p { */
-    /* Estilos específicos se precisar diferenciar do outro <p> no <main> */
-/* } */
-
-
 iframe {
-    width: 95%;
-    max-width: 1200px;
-    height: auto;
-    aspect-ratio: 1024 / 804; /* Manter proporção do dashboard Power BI */
-    border: 1px solid #ccc;
-    background-color: #fff; /* Fundo branco caso demore a carregar */
+    display: block;
+    width: 100%; /* Ocupa 100% da largura do main */
+    max-width: 100%; /* Sem max-width fixo, usa a largura do main */
+    height: var(--altura-iframe-desktop); /* Ajuste esta variável se necessário */
+    min-height: 500px; /* Altura mínima para visualização */
+    border: 1px solid var(--cor-borda);
+    background-color: var(--cor-fundo-alternativa);
+    border-radius: 8px;
+    box-shadow: var(--sombra-media);
 }
 
-/* Media query para telas menores */
-@media (max-width: 767px) {
-    header h1 {
-        font-size: 1.2em;
-    }
-    iframe {
-        width: 100%;
-        border-left: none;
-        border-right: none;
-    }
-    main p { /* Aplica a todos os <p> dentro de <main> */
-         max-width: 95%;
-    }
+/* == Estilo de Card para seções de texto == */
+.card {
+    background-color: var(--cor-fundo);
+    border-radius: 8px;
+    border: 1px solid var(--cor-borda);
+    box-shadow: var(--sombra-suave);
+    padding: 1.5rem; /* Padding um pouco menor para cards dentro do main */
+    width: 100%;
+    max-width: var(--largura-maxima-texto); /* Mantém otimizado para leitura */
 }
+section.info-card h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    color: var(--cor-primaria);
+    text-align: center;
+}
+section.info-card h4 {
+    margin-top: 1.2rem;
+    margin-bottom: 0.6rem;
+    font-size: 1.1rem;
+    color: var(--cor-texto-principal);
+}
+section.info-card h4:first-of-type { margin-top: 0; }
+section.info-card p, section.info-card ul { text-align: left; margin-bottom: 1rem; color: var(--cor-texto-secundario); }
+section.info-card p:last-child, section.info-card ul:last-child { margin-bottom: 0; }
+section.info-card ul { list-style-position: outside; padding-left: 1.5rem; }
+section.info-card ul li { margin-bottom: 0.5rem; }
+section.info-card ul li::marker { color: var(--cor-primaria); }
+section.info-card ul li strong { color: var(--cor-texto-principal); }
 
-/* Estilos para o Footer (Rodapé) */
+/* == Rodapé == */
 footer {
     text-align: center;
-    padding: 1em;
-    margin-top: 1em; /* Espaço acima do rodapé */
-    background-color: #eee; /* Mesma cor do header para consistência */
-    border-top: 1px solid #ccc;
+    padding: 1.5rem 1rem;
+    background-color: #343a40;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    border-top: 4px solid var(--cor-primaria);
+    position: relative; /* Garante que fique abaixo de .page-container */
+    z-index: 100; /* Footer acima do conteúdo scrollável do main/sidebar */
+}
+footer p { margin: 0; }
+
+/* ============================ */
+/* Responsividade               */
+/* ============================ */
+@media (max-width: 992px) { /* Tablets e telas menores */
+    :root {
+        --largura-sidebar: 220px;
+        --altura-iframe-desktop: 75vh;
+    }
+    .page-container {
+        /* Em telas menores, pode-se optar por fazer a sidebar sumir
+           ou transformá-la em um menu superior.
+           Por simplicidade, vamos fazer ela ir para cima do conteúdo. */
+        flex-direction: column;
+    }
+    nav.sidebar-nav {
+        width: 100%;
+        height: auto; /* Altura automática */
+        position: static; /* Deixa de ser sticky */
+        border-right: none;
+        border-bottom: 1px solid var(--cor-borda);
+        padding: 0.5rem 1rem; /* Menor padding */
+        overflow-y: visible;
+    }
+    nav.sidebar-nav ul {
+        flex-direction: row; /* Links em linha novamente */
+        justify-content: center;
+        gap: 0.5rem;
+    }
+    nav.sidebar-nav ul li a {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    main {
+        height: auto; /* Altura baseada no conteúdo */
+        padding: 1.5rem 1rem;
+        max-width: 100%; /* Ocupa toda a largura abaixo da nav */
+    }
+    iframe {
+        height: var(--altura-iframe-mobile, 65vh); /* Usa variável ou um valor padrão */
+        min-height: 400px;
+    }
 }
 
-footer p {
-    margin: 0;
-    font-size: 0.9em;
-    color: #555; /* Cor similar aos outros parágrafos */
-}
+@media (max-width: 767px) { /* Celulares */
+    :root {
+        --tamanho-base-fonte: 14px;
+        --altura-header: 70px;
+    }
+    header { height: var(--altura-header); }
+    header h1 { font-size: 1.2rem; }
+    .logo { height: 28px; }
 
-/* Estilo para links no footer (exemplo) */
-footer a {
-    color: #337ab7; /* Cor de link padrão (exemplo) */
-    text-decoration: none;
-}
+    nav.sidebar-nav ul {
+        gap: 0.3rem; /* Ainda menor espaçamento */
+        justify-content: flex-start; /* Alinha à esquerda em telas muito pequenas */
+        overflow-x: auto; /* Permite rolar os botões horizontalmente */
+        white-space: nowrap; /* Impede quebra de linha dos botões */
+        padding-bottom: 0.5rem; /* Espaço para scrollbar */
+    }
+    nav.sidebar-nav ul li {
+         flex-shrink: 0; /* Impede que os botões encolham demais */
+    }
+    nav.sidebar-nav ul li a {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.85rem;
+    }
+    main {
+        padding: 1rem 0.8rem;
+        gap: 1.5rem;
+    }
+    main > h2 { font-size: 1.3rem; }
+    p.intro-text { font-size: 0.95rem; margin-bottom: 0.8rem; }
+    section.card { padding: 1rem; }
+    section.card h3 { font-size: 1.1rem; }
+    section.card h4 { font-size: 1rem; }
 
-footer a:hover {
-    text-decoration: underline;
+    iframe {
+        height: var(--altura-iframe-mobile, 60vh);
+        min-height: 350px;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
 }
