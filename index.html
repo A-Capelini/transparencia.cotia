@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="JNjmcZPWdGGVEvP1popkDt0KaRe4LtaK_J9HbOauLYw" />
 
-    <title>Portal Transparência Cotia - Gastos Públicos no Terceiro Setor (Visão Geral)</title>
-    <meta name="description" content="Visão Geral dos gastos públicos de Cotia com o terceiro setor. Acompanhe de forma transparente onde o dinheiro público municipal e estadual está sendo investido em diversas áreas como educação, saúde e assistência social.">
-    <meta name="keywords" content="transparência cotia, terceiro setor cotia, gastos públicos cotia, portal transparência cotia, dinheiro público cotia, prefeitura cotia, fatec cotia, acompanhamento gastos, osc, ong cotia, visão geral, lei de acesso à informação, lei da transparência">
+    <title>Visão Geral - Portal Transparência Terceiro Setor Cotia</title>
+    <meta name="description" content="Visão Geral dos gastos públicos de Cotia com o terceiro setor. Acompanhe de forma transparente onde o dinheiro público municipal e estadual está sendo investido em diversas áreas.">
+    <meta name="keywords" content="transparência cotia, terceiro setor cotia, gastos públicos cotia, portal transparência cotia, dinheiro público cotia, prefeitura cotia, fatec cotia, osc, ong cotia, visão geral, LAI">
     <meta name="author" content="Prefeitura de Cotia & FATEC Cotia - Ciências de Dados">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://a-capelini.github.io/transparencia.cotia/">
+    <link rel="canonical" href="https://a-capelini.github.io/transparencia.cotia/index.html">
 
-    <link rel="icon" href="favicon.png" type="image/png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" href="favicon.ico">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,16 +25,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
+    <header id="main-header">
         <div class="header-content">
+             <img src="tc_logo.png" alt="Logo Portal da Transparência do Terceiro Setor de Cotia" class="logo-projeto">
              <h1>Portal da Transparência - Terceiro Setor Cotia</h1>
+             <div class="logos-parceiros">
+                <img src="cotia_logo.png" alt="Logo Prefeitura de Cotia" class="logo-parceiro">
+                <img src="fatec_logo.png" alt="Logo FATEC Cotia" class="logo-parceiro">
              </div>
+        </div>
     </header>
 
-    <div class="page-container">
-        <nav class="sidebar-nav">
+    <div class="page-container" id="page-container">
+        <nav class="sidebar-nav" id="sidebar-nav">
             <ul>
-                <li><a href="index.html" class="active">Visão Geral</a></li> <li><a href="administracao.html">Administração</a></li>
+                <li><a href="index.html" class="active">Visão Geral</a></li>
+                <li><a href="administracao.html">Administração</a></li>
                 <li><a href="assistencia_social.html">Assistência Social</a></li>
                 <li><a href="cultura.html">Cultura</a></li>
                 <li><a href="desporto_lazer.html">Desporto e Lazer</a></li>
@@ -45,11 +52,10 @@
             </ul>
         </nav>
 
-        <main>
+        <main id="main-content">
              <h2>Visão Geral dos Repasses ao Terceiro Setor</h2>
-
              <p class="intro-text">
-                 Explore abaixo o painel interativo com os dados consolidados dos repasses públicos às organizações do Terceiro Setor em Cotia. Use o menu lateral para ver detalhes por área ou role a página para mais informações sobre os dados e o projeto.
+                 Bem-vindo(a)! Explore abaixo o painel interativo com os dados consolidados dos repasses públicos às organizações do Terceiro Setor em Cotia. Use o menu lateral para ver detalhes por área ou role a página para mais informações.
              </p>
 
             <iframe
@@ -65,34 +71,73 @@
 
              <section class="card info-card" aria-labelledby="info-portal-titulo">
                 <h3 id="info-portal-titulo">Entendendo o Portal e os Dados</h3>
-
                 <h4>O que é o Terceiro Setor?</h4>
-                <p>
-                    O Terceiro Setor é composto por organizações da sociedade civil (OSCs) - associações, fundações e outras entidades privadas sem fins lucrativos - que atuam em prol de causas sociais e públicas. Elas complementam a atuação do Estado em áreas essenciais como assistência social, saúde, educação e cultura, muitas vezes através de parcerias e recebendo recursos públicos para executar seus projetos.
-                </p>
-
+                <p>O Terceiro Setor é composto por organizações da sociedade civil (OSCs) - associações, fundações e outras entidades privadas sem fins lucrativos - que atuam em prol de causas sociais e públicas. Elas complementam a atuação do Estado em áreas essenciais, muitas vezes através de parcerias e recebendo recursos públicos.</p>
                 <h4>Base Legal da Transparência</h4>
-                <p>
-                    Este portal visa cumprir as exigências de transparência pública, conforme a legislação brasileira:
-                </p>
+                <p>Este portal visa cumprir as exigências de transparência pública, conforme a legislação brasileira:</p>
                 <ul>
-                    <li><strong>Lei de Acesso à Informação (LAI - Lei nº 12.527/2011):</strong> Garante o acesso à informação pública.</li>
-                    <li><strong>Lei Complementar nº 131/2009 (Lei da Transparência):</strong> Exige a divulgação detalhada da execução orçamentária e financeira, incluindo transferências.</li>
-                    <li><strong>Marco Regulatório das OSCs (MROSC - Lei nº 13.019/2014):</strong> Define regras para parcerias e exige transparência.</li>
+                    <li><strong>Lei de Acesso à Informação (LAI - Lei nº 12.527/2011).</strong></li>
+                    <li><strong>Lei Complementar nº 131/2009 (Lei da Transparência).</strong></li>
+                    <li><strong>Marco Regulatório das OSCs (MROSC - Lei nº 13.019/2014).</strong></li>
                 </ul>
-
                 <h4>Sobre os Dados e o Projeto</h4>
-                 <p>
-                    Os dados aqui apresentados são baseados em informações públicas oficiais e visam facilitar o controle social. Para mais detalhes sobre o projeto, a metodologia e a equipe de Ciências de Dados da FATEC Cotia, visite a página <a href="sobre.html">Sobre o Projeto</a>.
-                </p>
+                 <p>Dados extraídos do <strong>Painel de Transferências do TCE-SP</strong> (<a href="https://painel.tce.sp.gov.br/" target="_blank" rel="noopener noreferrer">painel.tce.sp.gov.br</a>), tratados com Python e Excel. A visualização é feita com Microsoft Power BI. Iniciativa da FATEC Cotia (Ciências de Dados - Projeto Integrador I), orientada pelo Prof. André Roberto Ramos dos Santos, em colaboração com a Prefeitura de Cotia. Detalhes na página <a href="sobre.html">Sobre o Projeto</a>.</p>
              </section>
         </main>
-    </div> <footer>
+    </div>
+
+    <footer>
         <p>&copy; <span id="currentYear"></span> Prefeitura de Cotia & FATEC Cotia. Todos os direitos reservados.</p>
         <script>
             document.getElementById("currentYear").textContent = new Date().getFullYear();
         </script>
     </footer>
+
+    <script>
+        const header = document.getElementById('main-header');
+        const pageContainer = document.getElementById('page-container');
+        const sidebar = document.getElementById('sidebar-nav');
+        const mainContent = document.getElementById('main-content');
+        let lastScrollTop = 0;
+        let headerHeight = 0; // Será definido em adjustLayout
+
+        function adjustLayout() {
+            if (header && pageContainer && sidebar && mainContent) {
+                headerHeight = header.offsetHeight; // Pega a altura real do header
+                pageContainer.style.paddingTop = headerHeight + 'px';
+
+                if (window.innerWidth > 992) { // Layout Desktop com Sidebar Sticky
+                    sidebar.style.position = 'sticky';
+                    sidebar.style.top = headerHeight + 'px';
+                    sidebar.style.height = `calc(100vh - ${headerHeight}px)`;
+                    // O main content não precisa de altura definida, pois o .page-container
+                    // e a sidebar já definem o contexto de rolagem
+                    mainContent.style.height = 'auto'; // Permite que o main cresça com o conteúdo
+                    mainContent.style.overflowY = 'visible'; // Rolagem do body
+                } else { // Layout Mobile/Tablet
+                    sidebar.style.position = 'static'; // Sidebar vira um bloco normal
+                    sidebar.style.top = 'auto';
+                    sidebar.style.height = 'auto';
+                    mainContent.style.height = 'auto';
+                    mainContent.style.overflowY = 'visible';
+                }
+            }
+        }
+
+        function handleHeaderScroll() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop && scrollTop > 50) { // Começa a esconder depois de rolar um pouco
+                header.classList.add('header-hidden');
+            } else {
+                header.classList.remove('header-hidden');
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        }
+
+        window.addEventListener('load', adjustLayout);
+        window.addEventListener('resize', adjustLayout);
+        window.addEventListener('scroll', handleHeaderScroll);
+    </script>
 
 </body>
 </html>

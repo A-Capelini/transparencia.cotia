@@ -1,44 +1,45 @@
 /* ==========================================================================
-   Modern CSS for Transparência Cotia Portal - v3.0 (Sidebar Navigation)
+   Modern CSS for Transparência Cotia Portal - v3.7 (Header Dinâmico, Sidebar Fixa Desktop)
    ========================================================================== */
 
-/* == Variáveis (Paleta de Cores e Fontes) == */
+/* == Variáveis == */
 :root {
     --cor-primaria: #0056b3;
     --cor-primaria-escura: #003d82;
-    --cor-primaria-clara: #e6f0ff; /* Para hover sutil */
+    --cor-primaria-clara: #e6f0ff;
     --cor-fundo: #ffffff;
-    --cor-fundo-alternativa: #f8f9fa; /* Cinza muito claro para o body */
-    --cor-sidebar-fundo: #eef1f5; /* Fundo da sidebar */
+    --cor-fundo-alternativa: #f8f9fa;
+    --cor-sidebar-fundo: #eef1f5;
+    --cor-nav-fundo-mobile: #e0e0e0;
     --cor-texto-principal: #212529;
     --cor-texto-secundario: #495057;
     --cor-texto-links: var(--cor-primaria);
     --cor-texto-branco: #ffffff;
     --cor-borda: #dee2e6;
     --cor-foco: #007bff;
-    --sombra-suave: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra mais suave */
+    --sombra-suave: 0 1px 3px rgba(0, 0, 0, 0.05);
     --sombra-media: 0 4px 8px rgba(0, 0, 0, 0.08);
     --fonte-principal: 'Roboto', sans-serif;
     --tamanho-base-fonte: 16px;
     --line-height-base: 1.65;
-    --largura-maxima-conteudo: 1400px; /* Aumenta um pouco para acomodar sidebar */
-    --largura-sidebar: 260px; /* Largura da sidebar */
-    --altura-header: 80px; /* Estimativa da altura do header para cálculos */
+    --largura-maxima-conteudo: 1400px;
+    --largura-sidebar: 250px;
+    --padding-header-vertical: 0.8rem;
+    --altura-iframe-desktop: 70vh; /* Reduzido para dar mais espaço ao texto abaixo */
+    --altura-iframe-mobile: 65vh;
+    --largura-maxima-texto-card: 850px;
+    --largura-maxima-iframe-main: 100%;
     --transicao-rapida: all 0.2s ease-in-out;
+    --transicao-header: top 0.3s ease-in-out;
+    --z-index-header: 1000;
+    --z-index-sidebar: 950; /* Abaixo do header, mas acima do main se sobrepor */
+    --z-index-main: 1;
+    --z-index-footer: 50;
 }
 
-/* == Reset Básico e Estilos Globais == */
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-html {
-    font-size: var(--tamanho-base-fonte);
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
+/* == Reset e Globais == */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: var(--tamanho-base-fonte); scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 body {
     font-family: var(--fonte-principal);
     background-color: var(--cor-fundo-alternativa);
@@ -47,6 +48,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    /* padding-top para o header fixo será gerenciado pelo JS no .page-container */
 }
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--cor-texto-links); text-decoration: none; transition: var(--transicao-rapida); }
@@ -57,77 +59,101 @@ a:focus-visible {
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
 }
 
-/* == Cabeçalho == */
+/* == Cabeçalho com Efeito Show/Hide == */
 header {
     background-color: var(--cor-fundo);
-    padding: 1rem 0;
+    padding: var(--padding-header-vertical) 1rem;
     text-align: center;
     border-bottom: 1px solid var(--cor-borda);
-    box-shadow: var(--sombra-suave);
-    height: var(--altura-header); /* Define altura fixa para cálculo */
-    display: flex; /* Para centralizar o .header-content verticalmente */
-    align-items: center;
-    justify-content: center;
+    box-shadow: var(--sombra-media);
     width: 100%;
-    z-index: 100; /* Header acima do conteúdo se sidebar não for fixa */
+    position: fixed; /* Fixo no topo */
+    top: 0;          /* Começa visível */
+    left: 0;
+    z-index: var(--z-index-header);
+    transition: var(--transicao-header);
+}
+header.header-hidden {
+    top: -250px; /* Move o header para cima, para fora da tela. Ajuste este valor se seu header for mais alto. */
 }
 .header-content {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    padding: 0 1rem;
+    gap: 1rem;
+    flex-wrap: nowrap;
+    max-width: var(--largura-maxima-conteudo);
+    margin: 0 auto;
+}
+.logo-projeto {
+    height: clamp(40px, 5.5vh, 50px);
+    width: auto;
+    flex-shrink: 0;
+    object-fit: contain;
 }
 header h1 {
-    font-size: clamp(1.4rem, 3.5vw, 1.8rem); /* Ajuste no tamanho */
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
     color: var(--cor-primaria);
     font-weight: 700;
-    margin: 0;
+    margin: 0 0.25rem;
+    flex-grow: 1;
+    text-align: center;
+    line-height: 1.2;
 }
-.logo { height: clamp(30px, 5vh, 40px); width: auto; }
+.logos-parceiros {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+.logo-parceiro {
+    height: clamp(25px, 3.8vh, 35px);
+    width: auto;
+    opacity: 0.9;
+    object-fit: contain;
+}
 
 /* == Container Principal (Sidebar + Conteúdo) == */
 .page-container {
     display: flex;
-    flex-grow: 1; /* Ocupa o espaço restante abaixo do header */
+    flex-grow: 1;
     width: 100%;
-    max-width: var(--largura-maxima-conteudo); /* Limita largura total */
-    margin: 0 auto; /* Centraliza o container */
+    max-width: var(--largura-maxima-conteudo);
+    margin: 0 auto;
+    /* padding-top é definido por JavaScript */
 }
 
-/* == Navegação Lateral (Sidebar) == */
+/* == Navegação Lateral (Sidebar) - STICKY em DESKTOP == */
 nav.sidebar-nav {
-    flex: 0 0 var(--largura-sidebar); /* Não cresce, não encolhe, base de largura fixa */
+    flex: 0 0 var(--largura-sidebar);
     background-color: var(--cor-sidebar-fundo);
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 0.8rem;
     border-right: 1px solid var(--cor-borda);
-    overflow-y: auto; /* Permite rolagem se os links excederem a altura */
-    height: calc(100vh - var(--altura-header)); /* Altura total menos header */
-    position: sticky; /* Faz a sidebar "grudar" ao rolar */
-    top: var(--altura-header); /* Começa abaixo do header */
+    overflow-y: auto; /* Permite rolagem se os links não couberem na altura */
+    align-self: flex-start; /* Alinha ao topo do .page-container */
+    /* position: sticky; top e height serão definidos por JS em telas > 992px */
+    z-index: var(--z-index-sidebar);
 }
 nav.sidebar-nav ul {
     list-style: none;
     display: flex;
-    flex-direction: column; /* Links empilhados verticalmente */
+    flex-direction: column;
     gap: 0.5rem;
 }
 nav.sidebar-nav ul li a {
-    display: block; /* Ocupa toda a largura do li */
+    display: block;
     padding: 0.75rem 1rem;
     text-decoration: none;
     color: var(--cor-texto-secundario);
     border-radius: 6px;
     font-weight: 500;
     transition: var(--transicao-rapida);
-    white-space: normal; /* Permite quebra de linha no texto do link */
+    white-space: normal;
     font-size: 0.95rem;
 }
 nav.sidebar-nav ul li a:hover {
     background-color: var(--cor-primaria-clara);
     color: var(--cor-primaria-escura);
-    text-decoration: none;
 }
 nav.sidebar-nav ul li a.active {
     background-color: var(--cor-primaria);
@@ -137,14 +163,15 @@ nav.sidebar-nav ul li a.active {
 
 /* == Conteúdo Principal (Main) == */
 main {
-    flex-grow: 1; /* Ocupa o espaço restante */
-    padding: 2rem; /* Padding interno */
-    overflow-y: auto; /* Permite rolagem se o conteúdo for maior */
-    height: calc(100vh - var(--altura-header)); /* Altura total menos header */
+    flex-grow: 1;
+    padding: 2rem;
+    /* overflow-y: auto; e height são definidos por JS em telas > 992px */
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem; /* Espaçamento entre elementos do main */
+    gap: 2rem;
+    background-color: var(--cor-fundo-alternativa);
+    z-index: var(--z-index-main);
 }
 main > h2 {
     font-size: clamp(1.6rem, 4vw, 1.8rem);
@@ -152,25 +179,25 @@ main > h2 {
     font-weight: 700;
     text-align: center;
     width: 100%;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
 }
 p.intro-text {
     font-size: 1.05rem;
     color: var(--cor-texto-secundario);
     text-align: center;
     width: 100%;
-    max-width: 100%; /* Relativo ao main */
-    padding: 0;
-    margin-bottom: 0.5rem;
+    max-width: var(--largura-maxima-iframe-main);
+    padding: 0 0.5rem;
+    margin-bottom: 1.5rem;
 }
 iframe {
     display: block;
-    width: 100%; /* Ocupa 100% da largura do main */
-    max-width: 100%; /* Sem max-width fixo, usa a largura do main */
-    height: var(--altura-iframe-desktop); /* Ajuste esta variável se necessário */
-    min-height: 500px; /* Altura mínima para visualização */
+    width: 100%;
+    max-width: var(--largura-maxima-iframe-main);
+    height: var(--altura-iframe-desktop);
+    min-height: 450px;
     border: 1px solid var(--cor-borda);
-    background-color: var(--cor-fundo-alternativa);
+    background-color: #e0e0e0;
     border-radius: 8px;
     box-shadow: var(--sombra-media);
 }
@@ -181,22 +208,25 @@ iframe {
     border-radius: 8px;
     border: 1px solid var(--cor-borda);
     box-shadow: var(--sombra-suave);
-    padding: 1.5rem; /* Padding um pouco menor para cards dentro do main */
+    padding: 2rem;
     width: 100%;
-    max-width: var(--largura-maxima-texto); /* Mantém otimizado para leitura */
+    max-width: var(--largura-maxima-texto-card);
+    margin-left: auto;
+    margin-right: auto;
 }
 section.info-card h3 {
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     font-size: 1.3rem;
     color: var(--cor-primaria);
     text-align: center;
 }
 section.info-card h4 {
     margin-top: 1.2rem;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.75rem;
     font-size: 1.1rem;
     color: var(--cor-texto-principal);
+    font-weight: 700;
 }
 section.info-card h4:first-of-type { margin-top: 0; }
 section.info-card p, section.info-card ul { text-align: left; margin-bottom: 1rem; color: var(--cor-texto-secundario); }
@@ -204,18 +234,20 @@ section.info-card p:last-child, section.info-card ul:last-child { margin-bottom:
 section.info-card ul { list-style-position: outside; padding-left: 1.5rem; }
 section.info-card ul li { margin-bottom: 0.5rem; }
 section.info-card ul li::marker { color: var(--cor-primaria); }
-section.info-card ul li strong { color: var(--cor-texto-principal); }
+section.info-card ul li strong { color: var(--cor-texto-principal); font-weight: 700; }
+
 
 /* == Rodapé == */
 footer {
     text-align: center;
     padding: 1.5rem 1rem;
+    margin-top: auto;
     background-color: #343a40;
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.9rem;
     border-top: 4px solid var(--cor-primaria);
-    position: relative; /* Garante que fique abaixo de .page-container */
-    z-index: 100; /* Footer acima do conteúdo scrollável do main/sidebar */
+    position: relative;
+    z-index: var(--z-index-footer);
 }
 footer p { margin: 0; }
 
@@ -224,26 +256,44 @@ footer p { margin: 0; }
 /* ============================ */
 @media (max-width: 992px) { /* Tablets e telas menores */
     :root {
-        --largura-sidebar: 220px;
-        --altura-iframe-desktop: 75vh;
+        --altura-iframe-desktop: 70vh;
     }
-    .page-container {
-        /* Em telas menores, pode-se optar por fazer a sidebar sumir
-           ou transformá-la em um menu superior.
-           Por simplicidade, vamos fazer ela ir para cima do conteúdo. */
+    /* padding-top do .page-container é gerenciado pelo JS */
+    header {
+        /* Continua fixo. O JS NÃO desativa o efeito de sumir/reaparecer aqui,
+           mas o CSS da nav.sidebar-nav a transforma em barra superior normal.
+           Se quiser que o header NÃO suma em mobile, ajuste a condição no JS. */
+    }
+    .header-content {
+        justify-content: center;
         flex-direction: column;
+        gap: 0.5rem;
     }
-    nav.sidebar-nav {
+    .logo-projeto { order: 1; margin-bottom: 0.5rem;}
+    header h1 { order: 2; font-size: clamp(1.2rem, 3.5vw, 1.5rem); margin-bottom: 0.5rem;}
+    .logos-parceiros { order: 3;}
+
+    .page-container {
+        flex-direction: column;
+        /* padding-top é definido por JS */
+    }
+    nav.sidebar-nav { /* Transforma sidebar em barra de navegação no topo, ABAIXO do header */
+        flex: 1 1 100%;
+        order: -1; /* Garante que a nav venha ANTES do main no fluxo de coluna */
         width: 100%;
-        height: auto; /* Altura automática */
-        position: static; /* Deixa de ser sticky */
+        height: auto !important;
+        position: static !important; /* Importante para sobrescrever JS */
         border-right: none;
         border-bottom: 1px solid var(--cor-borda);
-        padding: 0.5rem 1rem; /* Menor padding */
-        overflow-y: visible;
+        padding: 0.5rem 1rem;
+        background-color: var(--cor-nav-fundo-mobile, #e0e0e0);
+        box-shadow: var(--sombra-suave);
+        top: auto !important;
+        overflow-y: visible; /* Para não ter scrollbar vertical */
+        z-index: calc(var(--z-index-header) - 1); /* Um pouco abaixo do header */
     }
     nav.sidebar-nav ul {
-        flex-direction: row; /* Links em linha novamente */
+        flex-direction: row;
         justify-content: center;
         gap: 0.5rem;
     }
@@ -252,12 +302,14 @@ footer p { margin: 0; }
         font-size: 0.9rem;
     }
     main {
-        height: auto; /* Altura baseada no conteúdo */
+        height: auto !important; /* Sobrescreve JS */
         padding: 1.5rem 1rem;
-        max-width: 100%; /* Ocupa toda a largura abaixo da nav */
+        max-width: 100%;
+        margin-top:0;
+        overflow-y: visible !important; /* Sobrescreve JS */
     }
     iframe {
-        height: var(--altura-iframe-mobile, 65vh); /* Usa variável ou um valor padrão */
+        height: var(--altura-iframe-mobile, 65vh);
         min-height: 400px;
     }
 }
@@ -265,38 +317,42 @@ footer p { margin: 0; }
 @media (max-width: 767px) { /* Celulares */
     :root {
         --tamanho-base-fonte: 14px;
-        --altura-header: 70px;
+        --altura-iframe-mobile: 60vh;
     }
-    header { height: var(--altura-header); }
-    header h1 { font-size: 1.2rem; }
-    .logo { height: 28px; }
+    /* Header já é fixo, JS controla o padding do .page-container */
+    /* Efeito de sumir/reaparecer do header ainda ativo se não desabilitado no JS para este breakpoint */
+    header h1 { font-size: 1.1rem; }
+    .logo-projeto { height: 35px; }
+    .logo-parceiro { height: 25px; }
+    .logos-parceiros { gap: 0.5rem; }
 
     nav.sidebar-nav ul {
-        gap: 0.3rem; /* Ainda menor espaçamento */
-        justify-content: flex-start; /* Alinha à esquerda em telas muito pequenas */
-        overflow-x: auto; /* Permite rolar os botões horizontalmente */
-        white-space: nowrap; /* Impede quebra de linha dos botões */
-        padding-bottom: 0.5rem; /* Espaço para scrollbar */
+        gap: 0.2rem 0.3rem;
+        justify-content: flex-start;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
     }
-    nav.sidebar-nav ul li {
-         flex-shrink: 0; /* Impede que os botões encolham demais */
+     nav.sidebar-nav ul li {
+         flex-shrink: 0;
     }
     nav.sidebar-nav ul li a {
-        padding: 0.4rem 0.6rem;
+        padding: 0.4rem 0.5rem;
         font-size: 0.85rem;
     }
     main {
-        padding: 1rem 0.8rem;
-        gap: 1.5rem;
+        padding: 1rem 0.5rem;
+        gap: 1.2rem;
     }
-    main > h2 { font-size: 1.3rem; }
-    p.intro-text { font-size: 0.95rem; margin-bottom: 0.8rem; }
+    main > h2 { font-size: 1.2rem; }
+    p.intro-text { font-size: 0.95rem; margin-bottom: 1rem; }
     section.card { padding: 1rem; }
-    section.card h3 { font-size: 1.1rem; }
-    section.card h4 { font-size: 1rem; }
+    section.info-card h3 { font-size: 1.1rem; }
+    section.info-card h4 { font-size: 1rem; }
 
     iframe {
-        height: var(--altura-iframe-mobile, 60vh);
+        height: var(--altura-iframe-mobile);
         min-height: 350px;
         border-left: none;
         border-right: none;

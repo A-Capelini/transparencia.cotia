@@ -3,69 +3,72 @@
 
   <url>
     <loc>https://a-capelini.github.io/transparencia.cotia/index.html</loc>
-    <lastmod>2025-05-09</lastmod>
-    <changefreq>weekly</changefreq> <priority>1.0</priority>
+    <lastmod>2024-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://a-capelini.github.io/transparencia.cotia/administracao.html</loc>
-    <lastmod>2025-05-09</lastmod>
-    <changefreq>yearly</changefreq> <priority>0.7</priority>
+    <lastmod>2024-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://a-capelini.github.io/transparencia.cotia/assistencia_social.html</loc>
-    <lastmod>2025-05-09</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2024-05-16</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://a-capelini.github.io/transparencia.cotia/cultura.html</loc>
-    <lastmod>2025-05-09</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2024-05-16</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://a-capelini.github.io/transparencia.cotia/desporto_lazer.html</loc>
-    <lastmod>2025-05-09</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2024-05-16</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://a-capelini.github.io/transparencia.cotia/educacao.html</loc>
-    <lastmod>2025-05-09</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2024-05-16</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://a-capelini.github.io/transparencia.cotia/legislativo.html</loc>
-    <lastmod>2025-05-09</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2024-05-16</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://a-capelini.github.io/transparencia.cotia/saude.html</loc>
-    <lastmod>2025-05-09</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2024-05-16</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://a-capelini.github.io/transparencia.cotia/urbanismo.html</loc>
-    <lastmod>2025-05-09</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2024-05-16</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://a-capelini.github.io/transparencia.cotia/sobre.html</loc>
-    <lastmod>2025-05-09</lastmod>
-    <changefreq>monthly</changefreq> <priority>0.5</priority>
+    <lastmod>2024-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 
 </urlset>
