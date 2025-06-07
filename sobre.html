@@ -56,6 +56,9 @@
              <h2>Sobre o Portal</h2>
 
              <section class="card info-card" aria-labelledby="sobre-portal-titulo">
+                
+                <img src="tc_logo.png" alt="Logo do Projeto Transparência Cotia" class="logo-sobre-pagina">
+                
                 <h3 id="sobre-portal-titulo">O Portal da Transparência do Terceiro Setor de Cotia</h3>
                 <p>
                     Este portal é uma iniciativa acadêmica e cívica que visa promover a transparência e o acesso à informação sobre os repasses de recursos públicos para as Organizações da Sociedade Civil (OSCs) que atuam no município de Cotia.
@@ -65,6 +68,10 @@
                 <p>
                     O projeto foi desenvolvido no âmbito da disciplina <strong>Projeto Integrador I</strong> do curso de <strong>Ciências de Dados</strong> da <strong>FATEC Cotia - Faculdade de Tecnologia de Cotia</strong>, em colaboração com a <strong>Prefeitura Municipal de Cotia</strong>. Esta parceria busca aproximar a academia das necessidades da gestão pública local, aplicando conhecimentos técnicos para a criação de soluções de impacto social.
                 </p>
+                <div class="parceiros-sobre">
+                    <img src="cotia_logo.png" alt="Logo Prefeitura de Cotia" class="logo-parceiro-sobre">
+                    <img src="fatec_logo.png" alt="Logo FATEC Cotia" class="logo-parceiro-sobre">
+                </div>
 
                 <h4>Objetivos</h4>
                 <ul>
@@ -76,10 +83,10 @@
 
                 <h4>Fonte dos Dados e Tecnologias Utilizadas</h4>
                 <p>
-                    Os dados brutos referentes aos repasses estaduais e municipais foram extraídos de fontes públicas oficiais, primariamente do <strong>Painel de Transferências do Tribunal de Contas do Estado de São Paulo (TCE-SP)</strong>, acessível em <a href="https://painel.tce.sp.gov.br/" target="_blank" rel="noopener noreferrer">painel.tce.sp.gov.br</a>.
+                    Os dados brutos referentes aos repasses estaduais e municipais foram extraídos de fontes públicas oficiais, primariamente do <strong>Painel de Transferências do Tribunal de Contas do Estado de São Paulo (TCE-SP)</strong>, acessível em <a href="https://painel.tce.sp.gov.br/" class="link-externo" target="_blank" rel="noopener noreferrer">painel.tce.sp.gov.br</a>.
                 </p>
                 <p>
-                    Para o tratamento, limpeza, filtragem e análise exploratória inicial destes dados, foram utilizadas as ferramentas <strong>Python</strong> (com suas bibliotecas de análise de dados) e <strong>Microsoft Excel</strong>. A visualização final e interativa dos dados consolidados é realizada através de dashboards desenvolvidos na plataforma <strong>Microsoft Power BI</strong>, que são então incorporados a este portal web (HTML e CSS).
+                    Para o tratamento, limpeza, filtragem e análise exploratória inicial destes dados, foram utilizadas as ferramentas <strong>Python</strong> (com suas bibliotecas de análise de dados) e <strong>Microsoft Excel</strong>. A visualização final e interativa dos dados consolidados é realizada através de dashboards desenvolvidos na plataforma <strong>Microsoft Power BI</strong>, que são então incorporados a este portal web (<strong>HTML, CSS e JavaScript</strong>).
                 </p>
                 <p>
                     Buscamos a maior fidedignidade e atualização possível dentro das limitações do projeto e da disponibilidade dos dados nas fontes originais.
@@ -87,12 +94,12 @@
 
                 <h4 style="margin-top: 1.5em;">Equipe de Desenvolvimento (Alunos FATEC Cotia - Ciências de Dados):</h4>
                 <ul>
-                    <li>Anderson Capelini Andrade</li>
-                    <li>Marcelo Henrique do Carmo</li>
-                    <li>Moisés do Nascimento Germano</li>
-                    <li>Rian Firmino dos Santos</li>
-                    <li>Victor Henrique Duarte Cardoso</li>
-                    <li>Yuri Souza da Silva</li>
+                    <li><a href="#" target="_blank" rel="noopener noreferrer">Anderson Capelini Andrade</a></li>
+                    <li><a href="#" target="_blank" rel="noopener noreferrer">Marcelo Henrique do Carmo</a></li>
+                    <li><a href="#" target="_blank" rel="noopener noreferrer">Moisés do Nascimento Germano</a></li>
+                    <li><a href="#" target="_blank" rel="noopener noreferrer">Rian Firmino dos Santos</a></li>
+                    <li><a href="#" target="_blank" rel="noopener noreferrer">Victor Henrique Duarte Cardoso</a></li>
+                    <li><a href="#" target="_blank" rel="noopener noreferrer">Yuri Souza da Silva</a></li>
                 </ul>
 
                 <h4 style="margin-top: 1.5em;">Orientação Acadêmica:</h4>
@@ -106,7 +113,7 @@
     </div>
 
     <footer>
-        <p>&copy; <span id="currentYear">2025</span> Prefeitura de Cotia & FATEC Cotia. Todos os direitos reservados.</p>
+        <p>&copy; <span id="currentYear"></span> Prefeitura de Cotia & FATEC Cotia. Todos os direitos reservados.</p>
         <script>
             document.getElementById("currentYear").textContent = new Date().getFullYear();
         </script>
@@ -129,10 +136,10 @@
                     sidebar.style.position = 'sticky';
                     sidebar.style.top = headerHeight + 'px';
                     sidebar.style.height = `calc(100vh - ${headerHeight}px)`;
-                    mainContent.style.height = 'auto'; 
-                    mainContent.style.overflowY = 'visible'; 
+                    mainContent.style.height = 'auto';
+                    mainContent.style.overflowY = 'visible';
                 } else { // Layout Mobile/Tablet
-                    sidebar.style.position = 'static'; 
+                    sidebar.style.position = 'static';
                     sidebar.style.top = 'auto';
                     sidebar.style.height = 'auto';
                     mainContent.style.height = 'auto';
@@ -143,7 +150,7 @@
 
         function handleHeaderScroll() {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop && scrollTop > 50) { 
+            if (scrollTop > lastScrollTop && scrollTop > 50) {
                 header.classList.add('header-hidden');
             } else {
                 header.classList.remove('header-hidden');

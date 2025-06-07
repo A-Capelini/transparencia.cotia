@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Modern CSS for Transparência Cotia Portal - v3.7 (Header Dinâmico, Sidebar Fixa Desktop)
+   Modern CSS for Transparência Cotia Portal - v4.0 (Melhorias Incorporadas)
    ========================================================================== */
 
 /* == Variáveis == */
@@ -25,14 +25,14 @@
     --largura-maxima-conteudo: 1400px;
     --largura-sidebar: 250px;
     --padding-header-vertical: 0.8rem;
-    --altura-iframe-desktop: 70vh; /* Reduzido para dar mais espaço ao texto abaixo */
+    --altura-iframe-desktop: 70vh;
     --altura-iframe-mobile: 65vh;
     --largura-maxima-texto-card: 850px;
     --largura-maxima-iframe-main: 100%;
     --transicao-rapida: all 0.2s ease-in-out;
     --transicao-header: top 0.3s ease-in-out;
     --z-index-header: 1000;
-    --z-index-sidebar: 950; /* Abaixo do header, mas acima do main se sobrepor */
+    --z-index-sidebar: 950;
     --z-index-main: 1;
     --z-index-footer: 50;
 }
@@ -48,7 +48,6 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    /* padding-top para o header fixo será gerenciado pelo JS no .page-container */
 }
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--cor-texto-links); text-decoration: none; transition: var(--transicao-rapida); }
@@ -67,14 +66,14 @@ header {
     border-bottom: 1px solid var(--cor-borda);
     box-shadow: var(--sombra-media);
     width: 100%;
-    position: fixed; /* Fixo no topo */
-    top: 0;          /* Começa visível */
+    position: fixed;
+    top: 0;
     left: 0;
     z-index: var(--z-index-header);
     transition: var(--transicao-header);
 }
 header.header-hidden {
-    top: -250px; /* Move o header para cima, para fora da tela. Ajuste este valor se seu header for mais alto. */
+    top: -250px;
 }
 .header-content {
     display: flex;
@@ -120,7 +119,6 @@ header h1 {
     width: 100%;
     max-width: var(--largura-maxima-conteudo);
     margin: 0 auto;
-    /* padding-top é definido por JavaScript */
 }
 
 /* == Navegação Lateral (Sidebar) - STICKY em DESKTOP == */
@@ -129,9 +127,8 @@ nav.sidebar-nav {
     background-color: var(--cor-sidebar-fundo);
     padding: 1.5rem 0.8rem;
     border-right: 1px solid var(--cor-borda);
-    overflow-y: auto; /* Permite rolagem se os links não couberem na altura */
-    align-self: flex-start; /* Alinha ao topo do .page-container */
-    /* position: sticky; top e height serão definidos por JS em telas > 992px */
+    overflow-y: auto;
+    align-self: flex-start;
     z-index: var(--z-index-sidebar);
 }
 nav.sidebar-nav ul {
@@ -165,7 +162,6 @@ nav.sidebar-nav ul li a.active {
 main {
     flex-grow: 1;
     padding: 2rem;
-    /* overflow-y: auto; e height são definidos por JS em telas > 992px */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -202,7 +198,7 @@ iframe {
     box-shadow: var(--sombra-media);
 }
 
-/* == Estilo de Card para seções de texto == */
+/* == Estilo de Card e Elementos da Página Sobre == */
 .card {
     background-color: var(--cor-fundo);
     border-radius: 8px;
@@ -236,6 +232,37 @@ section.info-card ul li { margin-bottom: 0.5rem; }
 section.info-card ul li::marker { color: var(--cor-primaria); }
 section.info-card ul li strong { color: var(--cor-texto-principal); font-weight: 700; }
 
+/* [MELHORIA] Estilos para logos na página Sobre */
+.logo-sobre-pagina {
+    display: block;
+    margin: 0 auto 1.5rem auto;
+    height: 120px;
+    width: auto;
+}
+.parceiros-sobre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+.logo-parceiro-sobre {
+    height: 45px;
+    max-width: 150px;
+    object-fit: contain;
+}
+
+/* [MELHORIA] Estilo para Links Externos */
+.link-externo::after {
+  content: ' ↗';
+  font-size: 0.8em;
+  display: inline-block;
+  transition: transform 0.2s ease-in-out;
+}
+.link-externo:hover::after {
+  transform: translate(2px, -2px);
+}
+
 
 /* == Rodapé == */
 footer {
@@ -254,16 +281,11 @@ footer p { margin: 0; }
 /* ============================ */
 /* Responsividade               */
 /* ============================ */
-@media (max-width: 992px) { /* Tablets e telas menores */
+@media (max-width: 992px) {
     :root {
         --altura-iframe-desktop: 70vh;
     }
-    /* padding-top do .page-container é gerenciado pelo JS */
-    header {
-        /* Continua fixo. O JS NÃO desativa o efeito de sumir/reaparecer aqui,
-           mas o CSS da nav.sidebar-nav a transforma em barra superior normal.
-           Se quiser que o header NÃO suma em mobile, ajuste a condição no JS. */
-    }
+    header.header-hidden { top: -250px; }
     .header-content {
         justify-content: center;
         flex-direction: column;
@@ -275,22 +297,21 @@ footer p { margin: 0; }
 
     .page-container {
         flex-direction: column;
-        /* padding-top é definido por JS */
     }
-    nav.sidebar-nav { /* Transforma sidebar em barra de navegação no topo, ABAIXO do header */
+    nav.sidebar-nav {
         flex: 1 1 100%;
-        order: -1; /* Garante que a nav venha ANTES do main no fluxo de coluna */
+        order: -1;
         width: 100%;
         height: auto !important;
-        position: static !important; /* Importante para sobrescrever JS */
+        position: static !important;
         border-right: none;
         border-bottom: 1px solid var(--cor-borda);
         padding: 0.5rem 1rem;
         background-color: var(--cor-nav-fundo-mobile, #e0e0e0);
         box-shadow: var(--sombra-suave);
         top: auto !important;
-        overflow-y: visible; /* Para não ter scrollbar vertical */
-        z-index: calc(var(--z-index-header) - 1); /* Um pouco abaixo do header */
+        overflow-y: visible;
+        z-index: calc(var(--z-index-header) - 1);
     }
     nav.sidebar-nav ul {
         flex-direction: row;
@@ -302,11 +323,11 @@ footer p { margin: 0; }
         font-size: 0.9rem;
     }
     main {
-        height: auto !important; /* Sobrescreve JS */
+        height: auto !important;
         padding: 1.5rem 1rem;
         max-width: 100%;
         margin-top:0;
-        overflow-y: visible !important; /* Sobrescreve JS */
+        overflow-y: visible !important;
     }
     iframe {
         height: var(--altura-iframe-mobile, 65vh);
@@ -314,13 +335,11 @@ footer p { margin: 0; }
     }
 }
 
-@media (max-width: 767px) { /* Celulares */
+@media (max-width: 767px) {
     :root {
         --tamanho-base-fonte: 14px;
         --altura-iframe-mobile: 60vh;
     }
-    /* Header já é fixo, JS controla o padding do .page-container */
-    /* Efeito de sumir/reaparecer do header ainda ativo se não desabilitado no JS para este breakpoint */
     header h1 { font-size: 1.1rem; }
     .logo-projeto { height: 35px; }
     .logo-parceiro { height: 25px; }
@@ -333,6 +352,20 @@ footer p { margin: 0; }
         white-space: nowrap;
         padding-bottom: 0.5rem;
         -webkit-overflow-scrolling: touch;
+    }
+    /* [MELHORIA] Estilo da barra de rolagem do menu mobile */
+    nav.sidebar-nav ul::-webkit-scrollbar {
+        height: 4px;
+    }
+    nav.sidebar-nav ul::-webkit-scrollbar-track {
+        background: rgba(0,0,0,0.05);
+    }
+    nav.sidebar-nav ul::-webkit-scrollbar-thumb {
+        background: #aab;
+        border-radius: 4px;
+    }
+    nav.sidebar-nav ul::-webkit-scrollbar-thumb:hover {
+        background: #889;
     }
      nav.sidebar-nav ul li {
          flex-shrink: 0;
